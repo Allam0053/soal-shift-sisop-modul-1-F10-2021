@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# BEGIN {
-#     colors[1] = "Green"
-#     colors[2] = "Yellow"
-#     colors[3] = "Blue"
-#     colors[4] = "Brown"
-#     colors[5] = "White"
-#   }
-
 awk -F"\t" '
   func calcProfitPercentage(sales, profit) {
     costPrice = sales - profit;
@@ -26,8 +18,10 @@ awk -F"\t" '
   END {
     # print "Biggest profit =", biggestProfit
     # print "Sales id =", id
+    printf("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %.2f%s.\n\n", id, biggestProfit, "%")
   }
-' Laporan-TokoShiSop.tsv
+' Laporan-TokoShiSop.tsv > hasil.txt
+
 
 
 awk -F"\t" '
@@ -53,12 +47,14 @@ awk -F"\t" '
   }
 
   END {
-    # print "\n========"
-    # for (ie in arr) {
-    #   print arr[ie]
-    # }
+    printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain: \n")
+    for (ie in arr) {
+      print arr[ie]
+    }
+    print " "
   }
-' Laporan-TokoShiSop.tsv
+' Laporan-TokoShiSop.tsv >> hasil.txt
+
 
 
 awk -F"\t" '
@@ -86,8 +82,11 @@ awk -F"\t" '
     # print "Home Office:", totalHomeOffice
     # print "Consumer:", totalConsumer
     # print "Corporate:", totalCorporate
+
+    printf("Tipe segmen customer yang penjualannya paling sedikit adalah %s dengan %d transaksi.\n\n", leastSector, leastCount)
   }
-' Laporan-TokoShiSop.tsv
+' Laporan-TokoShiSop.tsv >> hasil.txt
+
 
 
 awk -F"\t" '
@@ -113,14 +112,16 @@ awk -F"\t" '
     if (leastProfit == totalWest) leastRegion = leastRegion " West"
     if (leastProfit == totalSouth) leastRegion = leastRegion " South"
 
-    print "Least region is", leastRegion, " with $", leastProfit, "\n"
+    # print "Least region is", leastRegion, " with $", leastProfit, "\n"
     
-    print "Central:", totalCentral
-    print "East:", totalEast
-    print "West:", totalWest
-    print "South:", totalSouth
+    # print "Central:", totalCentral
+    # print "East:", totalEast
+    # print "West:", totalWest
+    # print "South:", totalSouth
+
+    printf("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %.2f\n", leastRegion, leastProfit)
   }
-' Laporan-TokoShiSop.tsv
+' Laporan-TokoShiSop.tsv >> hasil.txt
 
 
 # ./soal2_generate_laporan_ihir_shisop.sh
