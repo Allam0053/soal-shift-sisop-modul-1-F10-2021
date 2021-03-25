@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# 2a
 awk -F"\t" '
   func calcProfitPercentage(sales, profit) {
     costPrice = sales - profit;
@@ -7,7 +8,7 @@ awk -F"\t" '
     return profit / costPrice * 100;
   }
   
-  NR != 1 { # point a
+  NR != 1 {
     currentProfit = calcProfitPercentage($18, $21)
     if (currentProfit >= biggestProfit) {
       biggestProfit = currentProfit
@@ -23,7 +24,7 @@ awk -F"\t" '
 ' Laporan-TokoShiSop.tsv > hasil.txt
 
 
-
+# 2b
 awk -F"\t" '
   func arrayLength(arr) {
     for (i in arr) panjang++
@@ -48,15 +49,13 @@ awk -F"\t" '
 
   END {
     printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain: \n")
-    for (ie in arr) {
-      print arr[ie]
-    }
+    for (ie in arr) print arr[ie]
     print " "
   }
 ' Laporan-TokoShiSop.tsv >> hasil.txt
 
 
-
+# 2c
 awk -F"\t" '
   func angkaTerkecil(a, b) {
     return a < b ? a : b
@@ -88,7 +87,7 @@ awk -F"\t" '
 ' Laporan-TokoShiSop.tsv >> hasil.txt
 
 
-
+# 2d
 awk -F"\t" '
   func terkecil(a, b) {
     return a < b ? a : b
@@ -124,4 +123,5 @@ awk -F"\t" '
 ' Laporan-TokoShiSop.tsv >> hasil.txt
 
 
+# 2e -> sudah bersama a, b, c, d
 # ./soal2_generate_laporan_ihir_shisop.sh
