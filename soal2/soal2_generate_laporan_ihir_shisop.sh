@@ -47,7 +47,7 @@ awk -F"\t" '
     split($3, date, "-")
 
     if (date[3] == 17) {
-      print $7
+      # print $7
       requestPush(arr, $7)
     }
   }
@@ -57,6 +57,68 @@ awk -F"\t" '
     # for (ie in arr) {
     #   print arr[ie]
     # }
+  }
+' Laporan-TokoShiSop.tsv
+
+
+awk -F"\t" '
+  func angkaTerkecil(a, b) {
+    return a < b ? a : b
+  }
+  func angkaTerkecil3(a, b, c) {
+    return angkaTerkecil(a, angkaTerkecil(b, c))
+  }
+
+  NF != 1 {
+    if ($8 == "Consumer") totalConsumer++
+    if ($8 == "Corporate") totalCorporate++
+    if ($8 == "Home Office") totalHomeOffice++
+  }
+
+  END {
+    leastCount = angkaTerkecil3(totalConsumer, totalHomeOffice, totalCorporate)
+    
+    if (leastCount == totalConsumer) leastSector = "Consumer"
+    if (leastCount == totalHomeOffice) leastSector = "Home Office"
+    if (leastCount == totalCorporate) leastSector = "Corporate"
+
+    # print "Least sector is", leastSector, " with", leastCount, " sales\n"
+    # print "Home Office:", totalHomeOffice
+    # print "Consumer:", totalConsumer
+    # print "Corporate:", totalCorporate
+  }
+' Laporan-TokoShiSop.tsv
+
+
+awk -F"\t" '
+  func terkecil(a, b) {
+    return a < b ? a : b
+  }
+  func angkaTerkecil4(a, b, c, d) {
+    return terkecil(a, terkecil(b, terkecil(c, d)))
+  }
+
+  NF != 1 {
+    if ($13 == "Central") totalCentral += $21
+    if ($13 == "East") totalEast += $21
+    if ($13 == "West") totalWest += $21
+    if ($13 == "South") totalSouth += $21
+  }
+
+  END {
+    leastProfit = angkaTerkecil4(totalCentral, totalEast, totalWest, totalSouth)
+    
+    if (leastProfit == totalCentral) leastRegion = "Central"
+    if (leastProfit == totalEast) leastRegion = leastRegion " East"
+    if (leastProfit == totalWest) leastRegion = leastRegion " West"
+    if (leastProfit == totalSouth) leastRegion = leastRegion " South"
+
+    print "Least region is", leastRegion, " with $", leastProfit, "\n"
+    
+    print "Central:", totalCentral
+    print "East:", totalEast
+    print "West:", totalWest
+    print "South:", totalSouth
   }
 ' Laporan-TokoShiSop.tsv
 
