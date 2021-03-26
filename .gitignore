@@ -99,3 +99,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,visualstudiocode,git
+syslog.log
+error_message.csv
+user_statistic.csv
+coba.sh
+soal.sh
