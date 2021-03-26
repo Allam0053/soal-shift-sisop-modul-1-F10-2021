@@ -4,6 +4,7 @@ output_file_2=user_statistic.csv
 
 error_kind=("")
 error_kind_sum=(0)
+error_kind_sum_sort=(0)
 error_pattern='ERROR ([[:punct:][:alnum:]]+)'
 
 user_name=("")
@@ -59,14 +60,31 @@ while read in_line; do
     
 done < $in_f
 
+#sorting
 echo "Error,Count" > $output_file_1
-for i in "${!error_kind[@]}"; do
+for i in "${!error_kind_sum[@]}"; do
     if [[ $i == 0 ]]; then
         continue
     fi
-    echo "${error_kind[$i]}: ${error_kind_sum[$i]}" >> $output_file_1
+    error_kind_sum_sort[${#error_kind_sum_sort[@]}]=${error_kind_sum[$i]}
+done
+error_kind_sum_sort=($(echo ${error_kind_sum_sort[*]}| tr " " "\n" | sort -n)) #-r for descending
+
+#print
+for ((i=${#error_kind_sum_sort[@]}; i>=1; i=i-1))
+do
+    for j in "${!error_kind_sum[@]}"; do
+        if [[ $j == 0 ]]; then
+            continue
+        fi
+        if [[ "${error_kind_sum_sort[$i]}" =~ "${error_kind_sum[$j]}" ]]; then
+            echo "${error_kind[$j]}: ${error_kind_sum[$j]}" >> $output_file_1
+            continue
+        fi
+    done
 done
 
+#sorting
 for i in "${!user_name[@]}"; do
     if [[ $i == 0 ]]; then
         continue
@@ -75,6 +93,7 @@ for i in "${!user_name[@]}"; do
 done
 user_string_sort=($(echo ${user_string_sort[*]}| tr " " "\n" | sort -n))
 
+#print
 echo "Username,INFO,ERROR" > $output_file_2
 for i in "${!user_name[@]}"; do
     if [[ $i == 0 ]]; then
