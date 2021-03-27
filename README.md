@@ -90,10 +90,10 @@
 
 3.  Kuuhaku adalah orang yang sangat suka mengoleksi foto-foto digital, namun Kuuhaku juga merupakan seorang yang pemalas sehingga ia tidak ingin repot-repot mencari foto, selain itu ia juga seorang pemalu, sehingga ia tidak ingin ada orang yang melihat koleksinya tersebut, sayangnya ia memiliki teman bernama Steven yang memiliki rasa kepo yang luar biasa. Kuuhaku pun memiliki ide agar Steven tidak bisa melihat koleksinya, serta untuk mempermudah hidupnya, yaitu dengan meminta bantuan kalian.
 
-##Penyelesaian nomor 3 dan masalah-masalah yang ditemukan
+## Penyelesaian nomor 3 dan masalah-masalah yang ditemukan
 
-3a. Membuat script untuk mengunduh 23 gambar kucing dari https://loremflickr.com/320/240/kitten, membuat file log Foto.log untuk mencatat log pengunduhannya, menghapus gambar-gambar yang sama, menyimpan gambar kucing tersebut dengan format nama Koleksi_XX
-3b. Membuat crontab untuk menjalankan script sehari sekali pada jam 8 malam pada tanggal-tanggal tertentu (Seminggu sekali mulai tanggal 1 dan empat hari sekali mulai tanggal 2). Script yang dijalankan memindah semua gambar serta log-nya ke dalam folder dengan nama tanggal unduhannya
-3c. Membuat script untuk mengunduh gambar kelinci dari https://loremflickr.com/320/240/bunny dan gambar kucing dari situs di nomor 3a secara bergantian dan disimpan pada folder yang berbeda (Kucing_tanggal dan Kelinci_tanggal)
-3d. Membuat script untuk membuat zip sebuah folder yang berisi foto-foto tadi dan membuat password untuk zip tersebut berupa tanggal pembuatan zip
-3e. Membuat crontab untuk menjalankan script pada 3d setiap hari kerja (Senin sampai Jumat) pada jam 7 pagi. Lalu, diluar waktu tersebut, file zip tadi di-unzip dan file zip tadi dihapus
+- 3a. Membuat script untuk mengunduh 23 gambar kucing dari https://loremflickr.com/320/240/kitten, membuat file log Foto.log untuk mencatat log pengunduhannya, menghapus gambar-gambar yang sama, menyimpan gambar kucing tersebut dengan format nama Koleksi_XX
+- 3b. Membuat crontab untuk menjalankan script sehari sekali pada jam 8 malam pada tanggal-tanggal tertentu (Seminggu sekali mulai tanggal 1 dan empat hari sekali mulai tanggal 2). Script yang dijalankan memindah semua gambar serta log-nya ke dalam folder dengan nama tanggal unduhannya
+- 3c. Membuat script untuk mengunduh gambar kelinci dari https://loremflickr.com/320/240/bunny dan gambar kucing dari situs di nomor 3a secara bergantian dan disimpan pada folder yang berbeda (Kucing_tanggal dan Kelinci_tanggal)
+- 3d. Membuat script untuk membuat zip sebuah folder yang berisi foto-foto tadi dan membuat password untuk zip tersebut berupa tanggal pembuatan zip
+- 3e. Membuat crontab untuk menjalankan script pada 3d setiap hari kerja (Senin sampai Jumat) pada jam 7 pagi. Lalu, diluar waktu tersebut, file zip tadi di-unzip dan file zip tadi dihapus
