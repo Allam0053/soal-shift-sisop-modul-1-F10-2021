@@ -32,14 +32,156 @@
     ## Penyelesaian nomor 1
 
     - `Nomor 1a` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal1/soal1.sh). Berikut adalah penjelasan scriptnya:
+      NOTE: Code dibawah ini diambil dengan mempertimbangkan keterkaitan dengan jawaban soal. Bisa jadi code ini memiliki line yang tidak urut pada shell script
+      ```shell
+      error_count=0
+      info_count=0 #a
+      error_pattern='ERROR ([[:punct:][:alnum:]]+)'
+      while read in_line; do
+        if [[ "$in_line" =~ $error_pattern ]]; then
+        error_count=$(($error_count+1))
+      else
+        info_count=$(($info_count+1))
+      fi
+      done < $in_f
+      ```
+      jumlah error dan info akan tersimpan pada variable $error_count dan $info_count
       
     - `Nomor 1b` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal1/soal1.sh). Berikut adalah penjelasan scriptnya:
+      NOTE: Code dibawah ini diambil dengan mempertimbangkan keterkaitan dengan jawaban soal. Bisa jadi code ini memiliki line yang tidak urut pada shell script
+      ```shell
+      error_kind=("")
+      error_kind_sum=(0)
+      error_kind_sum_sort=(0)
+      error_pattern='ERROR ([[:punct:][:alnum:]]+)'
+      while read in_line; do
+        if [[ "$in_line" =~ $error_pattern ]]; then
+            error_count=$(($error_count+1))
+            line=${in_line##*ERROR } #extract string setelah "ERROR"
+            kind=${line% (*}
+            for i in "${!error_kind[@]}"; do
+                if [[ "${error_kind[$i]}" == "$kind" ]]; then
+                    error_kind_sum[$i]=$((${error_kind_sum[$i]}+1))
+                    flag=0
+                    break
+                else
+                    flag=1
+                fi
+            done
+            if [[ $flag == 1 ]]; then
+                error_kind[${#error_kind[@]}]="$kind"
+                error_kind_sum[${#error_kind_sum[@]}]=1
+            fi
+        else
+            info_count=$(($info_count+1))
+        fi
+      done < $in_f
+
+      #sorting
+      echo "Error,Count" > $output_file_1
+      for i in "${!error_kind_sum[@]}"; do
+          if [[ $i == 0 ]]; then
+              continue
+          fi
+          error_kind_sum_sort[${#error_kind_sum_sort[@]}]=${error_kind_sum[$i]}
+      done
+      error_kind_sum_sort=($(echo ${error_kind_sum_sort[*]}| tr " " "\n" | sort -n)) #-r for descending
+
+      #print
+      for ((i=${#error_kind_sum_sort[@]}; i>=1; i=i-1))
+      do
+          for j in "${!error_kind_sum[@]}"; do
+              if [[ $j == 0 ]]; then
+                  continue
+              fi
+              if [[ "${error_kind_sum_sort[$i]}" =~ "${error_kind_sum[$j]}" ]]; then
+                  echo "${error_kind[$j]}: ${error_kind_sum[$j]}" #b
+                  echo "${error_kind[$j]}: ${error_kind_sum[$j]}" >> $output_file_1 #d
+                  continue
+              fi
+          done
+      done
+      ```
+      Konsep code di atas adalah sebagai berikut:
+      - mengiterasi tiap bari input pada loop while
+      - tiap jumlah error akan diassign ke variable baru dan variable tersebut akan diurutkan secara descending dengan perintah echo
+      - pada loop yang terakhir ini, iterasi dilakukan berdasarkan jumlah error yang telah diurutkan secara descending sebelumnya. dan setiap jumlah error yang sama dengan jumlah error yang telah diurutkan tadi, akan dicetak nama errornya dan jumlah errornya
 
     - `Nomor 1c` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal1/soal1.sh). Berikut adalah penjelasan scriptnya:
+      NOTE: Code dibawah ini diambil dengan mempertimbangkan keterkaitan dengan jawaban soal. Bisa jadi code ini memiliki line yang tidak urut pada shell script
+      ```shell
+      error_count=0
+      info_count=0 #a
+      error_pattern='ERROR ([[:punct:][:alnum:]]+)'
+      while read in_line; do
+          line=${in_line##*(}
+          user=${line%)*}
+
+          for i in "${!user_name[@]}"; do
+              if [[ "${user_name[$i]}" == "$user" ]]; then
+                  if [[ $in_line =~ "INFO" ]]; then
+                      user_info[$i]=$((${user_info[$i]}+1))
+                  else
+                      user_error[$i]=$((${user_error[$i]}+1))
+                  fi
+                  flaguser=0
+                  break
+              else
+                  flaguser=1
+              fi
+          done
+          if [[ $flaguser == 1 ]]; then
+              user_name[${#user_name[@]}]="$user"
+              if [[ $in_line =~ "INFO" ]]; then
+                  user_info[${#user_info[@]}]=1
+                  user_error[${#user_error[@]}]=0
+              else
+                  user_info[${#user_info[@]}]=0
+                  user_error[${#user_error[@]}]=1
+              fi
+          fi
+          
+      done < $in_f
+
+      #sorting
+      for i in "${!user_name[@]}"; do
+          if [[ $i == 0 ]]; then
+              continue
+          fi
+          user_string_sort[${#user_string_sort[@]}]="${user_name[$i]},${user_info[$i]},${user_error[$i]}"
+      done
+      user_string_sort=($(echo ${user_string_sort[*]}| tr " " "\n" | sort -n))
+
+      #print
+      echo "Username,INFO,ERROR" > $output_file_2
+      for i in "${!user_name[@]}"; do
+          if [[ $i == 0 ]]; then
+              continue
+          elif [[ "${user_string_sort[$i]}" == "" ]]; then
+              continue
+          fi
+          echo "${user_string_sort[$i]}" #c
+          echo "${user_string_sort[$i]}" >> $output_file_2 #e
+      done
+      ```
+      Konsep code di atas adalah sebagai berikut:
+      - mengiterasi tiap bari input pada loop while, jika pattern nya sesuai dengan pattern log error, maka jumlah error pada user terkait akan dilakukan penjumlahan. Jika pattern nya tidak sesuai dengan pattern log error, maka log info user terkait akan dilakukan penjumlahan
+      - tiap nama serta jumlah error dan info akan diassign ke variable baru sebagai string dan variable tersebut akan diurutkan secara ascending dengan perintah echo.
+      - pada loop yang terakhir ini, iterasi dilakukan untuk mencetak hasil pengurutan pada operasi sebelumnya
       
-    - `Nomor 1d` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal1/soal1.sh). Berikut adalah penjelasan scriptnya:
+    - `Nomor 1d` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal1/soal1.sh).
+      NOTE: Code 1d sudah terdapat pada 1b
+      Konsep code di atas adalah sebagai berikut:
+      - mengiterasi tiap bari input pada loop while
+      - tiap jumlah error akan diassign ke variable baru dan variable tersebut akan diurutkan secara descending dengan perintah echo
+      - pada loop yang terakhir ini, iterasi dilakukan berdasarkan jumlah error yang telah diurutkan secara descending sebelumnya. dan setiap jumlah error yang sama dengan jumlah error yang telah diurutkan tadi, akan dicetak nama errornya dan jumlah errornya
       
-    - `Nomor 1e` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal1/soal1.sh). Berikut adalah penjelasan scriptnya:
+    - `Nomor 1e` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal1/soal1.sh).
+      NOTE: Code 1e sudah terdapat pada 1c
+      Konsep code di atas adalah sebagai berikut:
+      - mengiterasi tiap bari input pada loop while, jika pattern nya sesuai dengan pattern log error, maka jumlah error pada user terkait akan dilakukan penjumlahan. Jika pattern nya tidak sesuai dengan pattern log error, maka log info user terkait akan dilakukan penjumlahan
+      - tiap nama serta jumlah error dan info akan diassign ke variable baru sebagai string dan variable tersebut akan diurutkan secara ascending dengan perintah echo.
+      - pada loop yang terakhir ini, iterasi dilakukan untuk mencetak hasil pengurutan pada operasi sebelumnya
 
 
 2.  Steven dan Manis mendirikan sebuah startup bernama “TokoShiSop”. Sedangkan kamu dan Clemong adalah karyawan pertama dari TokoShiSop. Setelah tiga tahun bekerja, Clemong diangkat menjadi manajer penjualan TokoShiSop, sedangkan kamu menjadi kepala gudang yang mengatur keluar masuknya barang. Tiap tahunnya, TokoShiSop mengadakan Rapat Kerja yang membahas bagaimana hasil penjualan dan strategi kedepannya yang akan diterapkan. Kamu sudah sangat menyiapkan sangat matang untuk raker tahun ini. Tetapi tiba-tiba, Steven, Manis, dan Clemong meminta kamu untuk mencari beberapa kesimpulan dari data penjualan “Laporan-TokoShiSop.tsv”.
