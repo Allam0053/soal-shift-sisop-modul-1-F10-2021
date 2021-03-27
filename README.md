@@ -279,11 +279,22 @@
 Sebelum menjelaskan penyelesaiannya, saya mengerjakan soal-soal ini dengan bantuan campuran antara dari internet, command man, gabungan antara bantuan command man dan dari internet, dan dari modul. Saya mengerjakannya dengan cara mencoba sebagian dari penyelesaian di shell lalu menuliskan penyelesaiannya berdasarkan hasil di shell langsung di github, agar tidak menyita memori banyak. (Dewangga)
 
 - 3a. Membuat script untuk mengunduh 23 gambar kucing dari https://loremflickr.com/320/240/kitten, membuat file log Foto.log untuk mencatat log pengunduhannya, menghapus gambar-gambar yang sama, menyimpan gambar kucing tersebut dengan format nama Koleksi_XX
-    - [Link soal 3a](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3a.sh)
-    - Saya menggunakan for untuk mengunduh 23 gambar dari website tertera. Saya mengubah nama unduhannya dengan menggunakan format wget -O Koleksi_XX. Jika XX kurang dari 10, atau dalam artian lain, berdigit satu, maka formatnya menjadi wget -O Koleksi_0X dengan X menggantikan urutan unduhan ke-berapa
+    - Digunakan loop for untuk mengunduh 23 gambar dari website tertera. Jika urutan unduhan filenya kurang dari 10, maka menggunakan command wget –O Koleksi_0$i sedangkan jika lebih dari atau sama dengan 10, maka menggunakan wget –O Koleksi_$i. Nama folder atau file dapat dibentuk dari variabel
     - Untuk masalah menghapus foto yang memiliki duplikat, saya tidak tahu cara selain mendownload sebuah service atau mengecek masing-masing pixel satu per satu. Saya kepikiran menggunakan du -h untuk membaca besar memori gambar, tapi masih memikirkan adanya perbedaan pada ukuran byte pada dua gambar yang sama
-    - Menurut saya, file log memasukkan 
+    - Menurut saya, file log memasukkan hasil output dari setiap program yang dijalankan, jadi saya memasukan semua hasil output dari line pertama sampai terakhir ke dalam Foto.log menggunakan &>> karena jika menggunakan >>, maka tidak ada isinya di dalam Foto.log
 - 3b. Membuat crontab untuk menjalankan script sehari sekali pada jam 8 malam pada tanggal-tanggal tertentu (Seminggu sekali mulai tanggal 1 dan empat hari sekali mulai tanggal 2). Script yang dijalankan memindah semua gambar serta log-nya ke dalam folder dengan nama tanggal unduhannya
+	- Untuk file shell, tidak jauh beda dengan file pada nomor 3a. Perbedaannya adalah letak folder untuk menyimpan unduhannya berupa tanggal dengan format dd-mm-yyyy yang dapat dibuat dengan memasukan string tanggal dengan isi “`date +%d-%m-%Y`” ke dalam direktori folder yang akan dituju (`wget –P ~/”$tanggal”’)
+	- Direktori file dapat disingkat menjadi ~/Folder
+	- Selain itu, Foto.log juga akan dipindah ke folder “$tanggal”
+	- Untuk file crontab, untuk menentukan file (`bash soal3b.sh`) dieksekusi setiap jam 8 malam seminggu sekali mulai dari tanggal 1 dan setiap empat minggu sekali mulai dari tanggal 2 dalam crontab dapat menggunakan format `0 20 */7,2-31/4 * * bash soal3b.sh’
 - 3c. Membuat script untuk mengunduh gambar kelinci dari https://loremflickr.com/320/240/bunny dan gambar kucing dari situs di nomor 3a secara bergantian dan disimpan pada folder yang berbeda (Kucing_tanggal dan Kelinci_tanggal)
+	- Untuk dapat membedakan antara hari untuk mengunduh gambar kelinci dan kucing dapat menggunakan waktu UNIX (`date +%s`) yang dibagi oleh 86400 (hasil dari perkalian antara satu menit (60), satu jam (60), dan satu hari (24)). Lalu, hasil pembagian tersebut dicek apakah ganjil atau genap supaya dapat mengunduh gambar kelinci atau kucing secara bergantian menggunakan `if [ $(( $hari % 2)) -eq 0 ]`
+	- Format filenya masih mengikuti cara pada soal sebelumnya : menggunakan variabel. Tapi, jika ada spasi di dalam string tersebut, maka variabel tersebut diketik di dalam sebuah tanda petik
 - 3d. Membuat script untuk membuat zip sebuah folder yang berisi foto-foto tadi dan membuat password untuk zip tersebut berupa tanggal pembuatan zip
+	- Untuk membuat zip file berpassword, dapat menggunakan `zip –r –P [namapassword] [nama file zip yang akan dibuat] [nama-nama file/folder yang akan dikompres]. –r akan membaca folder yang akan dimasukan dalam zip sedangkan –P untuk menambahkan password
+	- Nama passwordnya memiliki format variabel sama seperti soal-soal sebelumnya, yaitu menggunakan variabel string dari command `date +%d%m%Y`
+	- Untuk folder yang akan dizip, saya menamakannya Folder_Gambar yang berisi folder-folder foto-foto kucing dan kelinci
 - 3e. Membuat crontab untuk menjalankan script pada 3d setiap hari kerja (Senin sampai Jumat) pada jam 7 pagi. Lalu, diluar waktu tersebut, file zip tadi di-unzip dan file zip tadi dihapus
+	- Ada dua perintah crontab : menjalankan soal3d.sh untuk membuat file zip dan membuka file zip lalu menghapusnya
+	- Perintah pertama akan membuat file zip setiap jam 7 pagi pada hari senin sampai jumat (`0 7 * * 1-5`)
+	- Perintah kedua akan mebuka file zip dan mengisinya dengan password yang berupa tanggal. Pada saat yang sama, file Koleksi.zip akan dihapus. Ini terjadi setiap jam 6 sore pada hari senin sampai jumat, dikarenakan pada hari sabtu dan minggu tidak ada kegiatan apa-apa (`0 18 * * 1-5`)
