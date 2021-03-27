@@ -1,6 +1,9 @@
-in_f="syslog.log"
+in_f=syslog.log
 output_file_1=error_message.csv
 output_file_2=user_statistic.csv
+
+error_count=0
+info_count=0 #a
 
 error_kind=("")
 error_kind_sum=(0)
@@ -14,6 +17,7 @@ user_string_sort=("")
 
 while read in_line; do
     if [[ "$in_line" =~ $error_pattern ]]; then
+        error_count=$(($error_count+1))
         line=${in_line##*ERROR } #extract string setelah "ERROR"
         kind=${line% (*}
         for i in "${!error_kind[@]}"; do
@@ -29,11 +33,13 @@ while read in_line; do
             error_kind[${#error_kind[@]}]="$kind"
             error_kind_sum[${#error_kind_sum[@]}]=1
         fi
+    else
+        info_count=$(($info_count+1))
     fi
 
     line=${in_line##*(}
     user=${line%)*}
-    # echo "$user"
+
     for i in "${!user_name[@]}"; do
         if [[ "${user_name[$i]}" == "$user" ]]; then
             if [[ $in_line =~ "INFO" ]]; then
@@ -78,7 +84,8 @@ do
             continue
         fi
         if [[ "${error_kind_sum_sort[$i]}" =~ "${error_kind_sum[$j]}" ]]; then
-            echo "${error_kind[$j]}: ${error_kind_sum[$j]}" >> $output_file_1
+            echo "${error_kind[$j]}: ${error_kind_sum[$j]}" #b
+            echo "${error_kind[$j]}: ${error_kind_sum[$j]}" >> $output_file_1 #d
             continue
         fi
     done
@@ -101,5 +108,6 @@ for i in "${!user_name[@]}"; do
     elif [[ "${user_string_sort[$i]}" == "" ]]; then
         continue
     fi
-    echo "${user_string_sort[$i]}" >> $output_file_2
+    echo "${user_string_sort[$i]}" #c
+    echo "${user_string_sort[$i]}" >> $output_file_2 #e
 done
