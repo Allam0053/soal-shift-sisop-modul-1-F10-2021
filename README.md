@@ -92,8 +92,13 @@
 
 ## Penyelesaian nomor 3 dan masalah-masalah yang ditemukan
 
+Sebelum menjelaskan penyelesaiannya, saya mengerjakan soal-soal ini dengan bantuan campuran antara dari internet, command man, gabungan antara bantuan command man dan dari internet, dan dari modul. Saya mengerjakannya dengan cara mencoba sebagian dari penyelesaian di shell lalu menuliskan penyelesaiannya berdasarkan hasil di shell langsung di github, agar tidak menyita memori banyak. (Dewangga)
+
 - 3a. Membuat script untuk mengunduh 23 gambar kucing dari https://loremflickr.com/320/240/kitten, membuat file log Foto.log untuk mencatat log pengunduhannya, menghapus gambar-gambar yang sama, menyimpan gambar kucing tersebut dengan format nama Koleksi_XX
     - [Link soal 3a](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3a.sh)
+    - Saya menggunakan for untuk mengunduh 23 gambar dari website tertera. Saya mengubah nama unduhannya dengan menggunakan format wget -O Koleksi_XX. Jika XX kurang dari 10, atau dalam artian lain, berdigit satu, maka formatnya menjadi wget -O Koleksi_0X dengan X menggantikan urutan unduhan ke-berapa
+    - Untuk masalah menghapus foto yang memiliki duplikat, saya tidak tahu cara selain mendownload sebuah service atau mengecek masing-masing pixel satu per satu. Saya kepikiran menggunakan du -h untuk membaca besar memori gambar, tapi masih memikirkan adanya perbedaan pada ukuran byte pada dua gambar yang sama
+    - Menurut saya, file log memasukkan 
 - 3b. Membuat crontab untuk menjalankan script sehari sekali pada jam 8 malam pada tanggal-tanggal tertentu (Seminggu sekali mulai tanggal 1 dan empat hari sekali mulai tanggal 2). Script yang dijalankan memindah semua gambar serta log-nya ke dalam folder dengan nama tanggal unduhannya
 - 3c. Membuat script untuk mengunduh gambar kelinci dari https://loremflickr.com/320/240/bunny dan gambar kucing dari situs di nomor 3a secara bergantian dan disimpan pada folder yang berbeda (Kucing_tanggal dan Kelinci_tanggal)
 - 3d. Membuat script untuk membuat zip sebuah folder yang berisi foto-foto tadi dan membuat password untuk zip tersebut berupa tanggal pembuatan zip
