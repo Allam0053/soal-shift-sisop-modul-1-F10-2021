@@ -274,9 +274,7 @@
 
 3.  Kuuhaku adalah orang yang sangat suka mengoleksi foto-foto digital, namun Kuuhaku juga merupakan seorang yang pemalas sehingga ia tidak ingin repot-repot mencari foto, selain itu ia juga seorang pemalu, sehingga ia tidak ingin ada orang yang melihat koleksinya tersebut, sayangnya ia memiliki teman bernama Steven yang memiliki rasa kepo yang luar biasa. Kuuhaku pun memiliki ide agar Steven tidak bisa melihat koleksinya, serta untuk mempermudah hidupnya, yaitu dengan meminta bantuan kalian.
 
-## Penyelesaian nomor 3 dan masalah-masalah yang ditemukan
-
-Sebelum menjelaskan penyelesaiannya, saya mengerjakan soal-soal ini dengan bantuan campuran antara dari internet, command man, gabungan antara bantuan command man dan dari internet, dan dari modul. Saya mengerjakannya dengan cara mencoba sebagian dari penyelesaian di shell lalu menuliskan penyelesaiannya berdasarkan hasil di shell langsung di github, agar tidak menyita memori banyak. (Dewangga)
+## Penyelesaian nomor 3
 
 - 3a. Membuat script untuk mengunduh 23 gambar kucing dari https://loremflickr.com/320/240/kitten, membuat file log Foto.log untuk mencatat log pengunduhannya, menghapus gambar-gambar yang sama, menyimpan gambar kucing tersebut dengan format nama Koleksi_XX
     - [Link kode bash nomor 3a](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3a.sh)
