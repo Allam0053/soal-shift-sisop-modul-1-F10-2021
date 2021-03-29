@@ -195,7 +195,7 @@
 
     - Steven ingin mengapresiasi kinerja karyawannya selama ini dengan mengetahui Row ID dan profit percentage terbesar (jika hasil profit percentage terbesar lebih dari 1, maka ambil Row ID yang paling besar). Karena kamu bingung, Clemong memberikan definisi dari profit percentage,
 
-      `Profit Percentage = (Profit Cost Price) 100`
+      `Profit Percentage = (Profit Cost Price) * 100`
 
       Cost Price didapatkan dari pengurangan Sales dengan Profit. (Quantity diabaikan).
 
@@ -331,9 +331,11 @@
 
       ![Bug jumlah field](./img/soal2/error-jumlah-NF.png)
 
-      Saat itu sempat lupa untuk memberi option `-F"\t"` pada script awk sehingga terjailah bug tersebut.
+      Pada saat itu sempat lupa untuk memberi option `-F"\t"` pada script awk sehingga terjadilah bug tersebut.
 
       Solusinya adalah dengan menambahkan option `-F"\t"` pada script awk.
+
+      <br>
 
       > Error: assignment pada reserved name `length`
 
