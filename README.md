@@ -187,6 +187,19 @@
       - mengiterasi tiap bari input pada loop while, jika pattern nya sesuai dengan pattern log error, maka jumlah error pada user terkait akan dilakukan penjumlahan. Jika pattern nya tidak sesuai dengan pattern log error, maka log info user terkait akan dilakukan penjumlahan
       - tiap nama serta jumlah error dan info akan diassign ke variable baru sebagai string dan variable tersebut akan diurutkan secara ascending dengan perintah echo.
       - pada loop yang terakhir ini, iterasi dilakukan untuk mencetak hasil pengurutan pada operasi sebelumnya
+    
+    Kesulitan pada pengerjaan ini adalah minimnya pengetahuan terhadap regex dan perintah yang tersedia seperti grep dan sed. Karena keterbatasan tersebut maka diputuskan untuk menulis code dengan pendekatan pemrograman dasar, sehingga code sangat panjang. Tidak ada sumber yang benar-benar lengkap mengenai regex, sehingga penelusuran terhadap materi harus dilakukan dengan berbagai sumber yang berbeda. Penulisan code pada shell script mempunyai kompleksitas yang cukup tinggi sehingga sering kali menyebabkan error yang sulit diketahui. Karena tergolong ilmu yang sangat baru bagi praktikan, praktikan harus membiasakan diri untuk menulis code yang sesuai pada shell script. Error yang paling sering terjadi adalah ketika proses ekstraksi string, terutama pengambilan log error atau info. berikut adalah error / proses pengambilan string yang gagal karena kesalahan pola pada regex
+    ![error1](./img/soal1/error1.png)
+    ![codeerror1](./img/soal1/codeerror1.png)
+
+    berikut adalah hasil dari file user statistic
+    ![user statistic](./img/soal1/hasil1.png)
+    
+    berikut adalah hasil dari file error message
+    ![error message](./img/soal1/hasil2.png)
+
+    berikut adalah hasil dari soal 1b dan 1c
+    ![error message](./img/soal1/hasil3.png)
 
   <br>
   <br>
