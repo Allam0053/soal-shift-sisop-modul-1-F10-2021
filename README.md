@@ -225,11 +225,20 @@
 
     - `Nomor 2a` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal2/soal2_generate_laporan_ihir_shisop.sh#L3). Berikut adalah penjelasan scriptnya:
 
-      - `NR != 1` Men-skip baris 1 karena isinya adalah judul field (bukan data)
-      - `currentProfit = calcProfitPercentage($18, $21)` Menghitung profit dengan batuan user-defined function `calcProfitPercentage()`. Pada dasarnya fungsi itu hanya menghitung profit dengan rumus yang sudah diberitahu pada soal
+      - `NR != 1`
+
+        Men-skip baris 1 karena isinya adalah judul field (bukan data)
+
+      - `currentProfit = calcProfitPercentage($18, $21)`
+
+        Menghitung profit dengan batuan user-defined function `calcProfitPercentage()`. Pada dasarnya fungsi itu hanya menghitung profit dengan rumus yang sudah diberitahu pada soal
+
       - `if (currentProfit >= biggestProfit) { biggestProfit = currentProfit id = $1 }`
+
         Untuk mengecek jika profit yang dihitung sekarang lebih besar/sama dengan dari perhitungan profit sebelumnya. Jika benar maka simpan data `id` nya
+
       - `printf("Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase %.2f%s.\n\n", id, biggestProfit, "%")`
+
         Untuk menampilkan `id` dengan profit terbesar dengan format kalimat sesuai soal
 
       <br>
@@ -242,10 +251,18 @@
 
     - `Nomor 2b` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal2/soal2_generate_laporan_ihir_shisop.sh#L27). Berikut adalah penjelasan scriptnya:
 
-      - `NR != 1 && $10 == "Albuquerque"` Men-skip baris 1 karena isinya adalah judul field (bukan data) dan memilih baris data yang kolom-10 nya adalah "Albuquerque"
-      - `split($3, date, "-")` Untuk kolom-3 (datanya berupa string), pisahkan stringnya berdasarkan karakter "`-`" menjadi array yang disimpan pada variable `date` menggunakan built-in function `split()`
+      - `NR != 1 && $10 == "Albuquerque"`
+
+        Men-skip baris 1 karena isinya adalah judul field (bukan data) dan memilih baris data yang kolom-10 nya adalah "Albuquerque"
+
+      - `split($3, date, "-")`
+
+        Untuk kolom-3 (datanya berupa string), pisahkan stringnya berdasarkan karakter "`-`" menjadi array yang disimpan pada variable `date` menggunakan built-in function `split()`
+
       - `if (date[3] == 17) { requestPush(arr, $7) }`
+
         Untuk mengecek apakah sekarang tahun 2017. Jika benar maka data (kolom-7) akan disimpan pada array `arr`. `requestPush()` adalah user-defined function yang pada dasarnya fungsi ini melakukan pengecekan sebuah data yang ingin disimpan ke dalam array. Data baru akan disimpan jika dan hanya jika array belum memiliki data baru tersebut.
+
       -       printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain: \n")
               for (ie in arr) print arr[ie]
               print " "
@@ -261,18 +278,24 @@
 
     - `Nomor 2c` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal2/soal2_generate_laporan_ihir_shisop.sh#L58). Berikut adalah penjelasan scriptnya:
 
-      - `NR != 1` Men-skip baris 1 karena isinya adalah judul field (bukan data)
+      - `NR != 1`
+
+        Men-skip baris 1 karena isinya adalah judul field (bukan data)
+
       -       if ($8 == "Consumer") totalConsumer++
               if ($8 == "Corporate") totalCorporate++
               if ($8 == "Home Office") totalHomeOffice++
         Mengecek jika data kolom-8 sesuai dengan kondisi, maka kemunculannya akan dihitung dengan meng-increment pada variabel terkait.
       - `leastCount = angkaTerkecil3(totalConsumer, totalHomeOffice, totalCorporate)`
+
         Untuk mencari & menyimpan nilai terkecil dari variabel `totalConsumer`, `totalHomeOffice`, `totalCorporate` dengan bantuan user-defined function `angkaTerkecil3()`.
+
       -       if (leastCount == totalConsumer) leastSector = "Consumer"
               if (leastCount == totalHomeOffice) leastSector = "Home Office"
               if (leastCount == totalCorporate) leastSector = "Corporate"
         Mengecek untuk menentukan sektor mana yang memiliki kemunculan terkecil.
       - `printf("Tipe segmen customer yang penjualannya paling sedikit adalah %s dengan %d transaksi.\n\n", leastSector, leastCount)`
+
         Menampilkan segmen penjualan paling sedikit dengan format kaliamt sesuai pada soal.
 
       <br>
@@ -285,14 +308,19 @@
 
     - `Nomor 2d` Scriptnya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal2/soal2_generate_laporan_ihir_shisop.sh#L90). Berikut adalah penjelasan scriptnya:
 
-      - `NR != 1` Men-skip baris 1 karena isinya adalah judul field (bukan data).
+      - `NR != 1`
+
+        Men-skip baris 1 karena isinya adalah judul field (bukan data).
+
       -       if ($13 == "Central") totalCentral += $21
               if ($13 == "East") totalEast += $21
               if ($13 == "West") totalWest += $21
               if ($13 == "South") totalSouth += $21
         Menghitung total profit (ada pada kolom-21) berdasarkan daerahnya.
       - `leastProfit = angkaTerkecil4(totalCentral, totalEast, totalWest, totalSouth)`
+
         Mencari profit terkecil dengan bantuan user-defined function `angkaTerkecil4()`
+
       -       if (leastProfit == totalCentral) leastRegion = "Central"
               if (leastProfit == totalEast) leastRegion = leastRegion " East"
               if (leastProfit == totalWest) leastRegion = leastRegion " West"
