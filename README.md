@@ -394,7 +394,7 @@
 ## Penyelesaian nomor 3
 
 ![image](https://user-images.githubusercontent.com/73766205/112965696-b2aed180-9173-11eb-88ed-32cb403c73ca.png)
-
+![image](https://user-images.githubusercontent.com/73766205/112966015-01f50200-9174-11eb-8b81-08a37d1c9af1.png)
 
 - 3a. Membuat script untuk mengunduh 23 gambar kucing dari https://loremflickr.com/320/240/kitten, membuat file log Foto.log untuk mencatat log pengunduhannya, menghapus gambar-gambar yang sama, menyimpan gambar kucing tersebut dengan format nama Koleksi_XX
   - [Link kode bash nomor 3a](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3a.sh)
@@ -422,3 +422,8 @@
   - Ada dua perintah crontab : menjalankan soal3d.sh untuk membuat file zip dan membuka file zip lalu menghapusnya
   - Perintah pertama akan membuat file zip setiap jam 7 pagi pada hari senin sampai jumat (`0 7 * * 1-5`)
   - Perintah kedua akan mebuka file zip dan mengisinya dengan password yang berupa tanggal. Pada saat yang sama, file Koleksi.zip akan dihapus. Ini terjadi setiap jam 6 sore pada hari senin sampai jumat, dikarenakan pada hari sabtu dan minggu tidak ada kegiatan apa-apa (`0 18 * * 1-5`)
+
+Kesulitan yang dialami selama pengerjaan soal
+- Untuk soal 3a, belum diketahui caranya membandingkan dua gambar yang sama
+- Untuk menghindari kelebihan memori dan tepat waktu sebelum deadline, saya mengetik kodingannya langsung di github. Tapi, sebagian dari commandnya diketik di shell sebelum diketik di github, sehingga sisanya hanya perulangan atau modifikasi
+- Belum tahu cara menuliskan di dalam log sehingga yang ditampilkan hanyalah status unduhannya saja dan tidak termasuk line-line yang lainnya. Atau bahkan karakteristiknya log itu sendiri
