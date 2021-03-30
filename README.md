@@ -408,6 +408,9 @@
   - Direktori file dapat disingkat menjadi ~/Folder
   - Selain itu, Foto.log juga akan dipindah ke folder “$tanggal”
   - Untuk file crontab, untuk menentukan file (`bash soal3b.sh`) dieksekusi setiap jam 8 malam seminggu sekali mulai dari tanggal 1 dan setiap empat minggu sekali mulai dari tanggal 2 dalam crontab dapat menggunakan format `0 20 _/7,2-31/4 _ \* bash soal3b.sh’
+
+![image](https://user-images.githubusercontent.com/73766205/112969392-66fe2700-9177-11eb-9c56-118ea679d668.png)
+
 - 3c. Membuat script untuk mengunduh gambar kelinci dari https://loremflickr.com/320/240/bunny dan gambar kucing dari situs di nomor 3a secara bergantian dan disimpan pada folder yang berbeda (Kucing_tanggal dan Kelinci_tanggal)
   - [Link kode bash nomor 3c](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3c.sh)
   - Untuk dapat membedakan antara hari untuk mengunduh gambar kelinci dan kucing dapat menggunakan waktu UNIX (`date +%s`) yang dibagi oleh 86400 (hasil dari perkalian antara satu menit (60), satu jam (60), dan satu hari (24)). Lalu, hasil pembagian tersebut dicek apakah ganjil atau genap supaya dapat mengunduh gambar kelinci atau kucing secara bergantian menggunakan `if [ $(( $hari % 2)) -eq 0 ]`
@@ -427,3 +430,4 @@ Kesulitan yang dialami selama pengerjaan soal
 - Untuk soal 3a, belum diketahui caranya membandingkan dua gambar yang sama
 - Untuk menghindari kelebihan memori dan tepat waktu sebelum deadline, saya mengetik kodingannya langsung di github. Tapi, sebagian dari commandnya diketik di shell sebelum diketik di github, sehingga sisanya hanya perulangan atau modifikasi
 - Belum tahu cara menuliskan di dalam log sehingga yang ditampilkan hanyalah status unduhannya saja dan tidak termasuk line-line yang lainnya. Atau bahkan karakteristiknya log itu sendiri
+- Kelihatannya, jika Ubuntu berjalan, maka tidak bisa menggunakan semacam mikrofon atau speaker dari semacam Google Meet atau Discord
