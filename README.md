@@ -393,6 +393,9 @@
 
 ## Penyelesaian nomor 3
 
+![image](https://user-images.githubusercontent.com/73766205/112965696-b2aed180-9173-11eb-88ed-32cb403c73ca.png)
+
+
 - 3a. Membuat script untuk mengunduh 23 gambar kucing dari https://loremflickr.com/320/240/kitten, membuat file log Foto.log untuk mencatat log pengunduhannya, menghapus gambar-gambar yang sama, menyimpan gambar kucing tersebut dengan format nama Koleksi_XX
   - [Link kode bash nomor 3a](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3a.sh)
   - Digunakan loop for untuk mengunduh 23 gambar dari website tertera. Jika urutan unduhan filenya kurang dari 10, maka menggunakan command wget –O Koleksi*0$i sedangkan jika lebih dari atau sama dengan 10, maka menggunakan wget –O Koleksi*$i. Nama folder atau file dapat dibentuk dari variabel
