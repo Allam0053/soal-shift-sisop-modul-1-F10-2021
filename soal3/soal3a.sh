@@ -29,7 +29,7 @@ for ((num=1; num<=$TOTAL_FOTO; num=num+1)); do
 
     # Jika ada, hapus file, lalu kembali men-download file baru
     adaPersamaan=$(diff $iterasiFile $fileBaruTerdownload)
-    if [ -z $adaPersamaan ]; then
+    if [ -z "$adaPersamaan" ]; then
       totalSama=$(($totalSama + 1))
       rm $fileBaruTerdownload
       break

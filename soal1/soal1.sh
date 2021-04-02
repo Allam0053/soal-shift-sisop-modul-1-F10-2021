@@ -84,8 +84,8 @@ do
             continue
         fi
         if [[ "${error_kind_sum_sort[$i]}" =~ "${error_kind_sum[$j]}" ]]; then
-            echo "${error_kind[$j]}: ${error_kind_sum[$j]}" #b
-            echo "${error_kind[$j]}: ${error_kind_sum[$j]}" >> $output_file_1 #d
+            echo "${error_kind[$j]}, ${error_kind_sum[$j]}" #b
+            echo "${error_kind[$j]}, ${error_kind_sum[$j]}" >> $output_file_1 #d
             continue
         fi
     done

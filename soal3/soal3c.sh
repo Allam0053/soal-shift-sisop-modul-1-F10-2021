@@ -40,7 +40,7 @@ tanggal=`date +%s` #penanggalans sejak 1 Januari 1970
 danggal=`date +%d-%m-%Y`
 let hari=$tanggal/86400
 
-if [ $(( $hari % 2)) -eq 1 ]
+if [ $(( $hari % 2)) -eq 0 ]
 then
   downloadFoto https://loremflickr.com/320/240/kitten "Kucing_$danggal"
 else
