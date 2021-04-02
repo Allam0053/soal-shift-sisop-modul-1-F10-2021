@@ -102,5 +102,7 @@ $RECYCLE.BIN/
 syslog.log
 error_message.csv
 user_statistic.csv
-coba.sh
 soal.sh
+coba.sh
+coba-riza.sh
+clean3a.sh
