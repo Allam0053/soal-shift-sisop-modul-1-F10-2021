@@ -1,48 +1,78 @@
 #!/bin/bash
 
 TOTAL_FOTO=23
-
-formatNamaFile() {
-  nomorDihapus=$1
-  for ((i=$nomorDihapus; i<$TOTAL_FOTO; i=i+1)); do
-    lebihSatu=$(($i+1))
-
-    namaBaru="Koleksi_$i"
-    namaLama="Koleksi_$lebihSatu"
-
-    if [ $i -lt 10 ]; then namaBaru="Koleksi_0$i"; fi
-    if [ $lebihSatu -lt 10 ]; then namaLama="Koleksi_0$lebihSatu"; fi
-
-    mv $namaLama $namaBaru
-  done
-}
+totalSama=0
 
 for ((num=1; num<=$TOTAL_FOTO; num=num+1)); do
-  namaFile="Koleksi_$num"
-  if [ $num -lt 10 ]; then namaFile="Koleksi_0$num"; fi
-  curl -Lo ./$namaFile -k https://loremflickr.com/320/240/kitten 2>> Foto.log
-done
 
-sama=0
-for ((i=1; i<=$TOTAL_FOTO; i=i+1)); do
-  for ((j=1; j<=$TOTAL_FOTO; j=j+1)); do
-    file1="Koleksi_$i"
-    file2="Koleksi_$j"
+  # Proses download file
+  nomorFile=$(($num - $totalSama))
+  fileBaruTerdownload="Koleksi_$nomorFile"
+  if [ $nomorFile -lt 10 ]; then fileBaruTerdownload="Koleksi_0$nomorFile"; fi
+  curl -Lo ./$fileBaruTerdownload -k https://loremflickr.com/320/240/kitten 2>> Foto.log
+  
+  # Iterasi: cek setiap file yg sudah ada apakah ada yang sama dengan yg baru di-download
+  for ((i=1; i<$nomorFile; i=i+1)); do
+    iterasiFile="Koleksi_$i"
+    if [ $i -lt 10 ]; then iterasiFile="Koleksi_0$i"; fi
 
-    if [ $i -lt 10 ]; then file1="Koleksi_0$i"; fi
-    if [ $j -lt 10 ]; then file1="Koleksi_0$j"; fi
-    if [ $i == $j -o ! -f $file1 -o ! -f $file2 ]; then continue; fi
-    
-    fileSama=$(cmp $file1 $file2)
-    if [ -z $fileSama ]; then 
-      sama=$(($sama+1))
-      rm $file2
-      formatNamaFile $j
+    # Jika ada, hapus file, lalu kembali men-download file baru
+    adaPersamaan=$(diff $iterasiFile $fileBaruTerdownload)
+    if [ -z $adaPersamaan ]; then
+      totalSama=$(($totalSama + 1))
+      rm $fileBaruTerdownload
+      break
     fi
   done
 done
 
-# echo "ada $sama file yang sama"
+echo "Ada $totalSama file yang sama"
+
+# for ((i=1; i<=$TOTAL_FOTO; i=i+1)); do
+
+#   # Penyesuaian nama file 1 & guard clause
+#   file1="Koleksi_$i"
+#   if [ $i -lt 10 ]; then file1="Koleksi_0$i"; fi
+#   if [ ! -f $file1 ]; then continue; fi
+
+#   for ((j=1; j<=$TOTAL_FOTO; j=j+1)); do
+
+#     # Penyesuaian nama file 2 & guard clause
+#     file2="Koleksi_$j"
+#     if [ $j -lt 10 ]; then file2="Koleksi_0$j"; fi
+#     if [ $i == $j -o ! -f $file2 ]; then continue; fi
+    
+#     fileSama=$(diff $file1 $file2)
+
+#     if [ -z $fileSama ]; then 
+#       # echo -e "\n$i == $j\n"
+#       sama=$(($sama+1))
+#       rm $file2
+#     fi
+#   done
+# done
+
+# echo -e "\nada $sama file yang sama\n"
+
+# for ((i=1; i<=$TOTAL_FOTO; i=i+1)); do
+#   for ((j=1; j<=$TOTAL_FOTO; j=j+1)); do
+
+#   done
+# done
+
+# Penyesuaian nama file
+# for ((i=1; i<$TOTAL_FOTO; i=i+1)); do
+#   lebihSatu=$(($i+1))
+#   fileKosong="Koleksi_$i"
+#   fileSetelahKosong="Koleksi_$lebihSatu"
+
+#   # Penyesuaian nama file 1 & guard clause
+#   if [ $lebihSatu -lt 10 ]; then fileSetelahKosong="Koleksi_0$lebihSatu"; fi
+#   if [ $i -lt 10 ]; then fileKosong="Koleksi_0$i"; fi
+#   if [ ! -f $fileSetelahKosong ]; then break; fi
+
+#   mv $fileSetelahKosong $fileKosong
+# done
 
 # Operasi matematika
 # totalIterasi=1
