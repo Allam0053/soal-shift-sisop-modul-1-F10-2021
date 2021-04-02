@@ -5,7 +5,7 @@
 TANGGAL="`date +%d-%m-%Y`"
 JUMLAH_FOTO=23
 
-rmdir ./$TANGGAL
+rm -r ./$TANGGAL
 mkdir ./$TANGGAL
 
 mv Foto.log ./$TANGGAL
