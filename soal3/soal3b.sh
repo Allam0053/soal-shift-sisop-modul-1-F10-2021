@@ -1,14 +1,19 @@
 #!/bin/bash
 
-tanggal="`date +%d-%m-%Y`"
+./soal3a.sh
 
-for ((i=1; i<=23; i=i+1))
-do
-if [ $i -lt 10 ]
-then
-wget -P ~/"$tanggal" -O Koleksi_0$i https://loremflickr.com/320/240/kitten &>> Foto.log
-else
-wget -P ~/"$tanggal" -O Koleksi_$i https://loremflickr.com/320/240/kitten &>> Foto.log
-fi
+TANGGAL="`date +%d-%m-%Y`"
+JUMLAH_FOTO=23
+
+rmdir ./$TANGGAL
+mkdir ./$TANGGAL
+
+mv Foto.log ./$TANGGAL
+
+for ((num=1; num<=$JUMLAH_FOTO; num=num+1)); do
+  namaFile="Koleksi_$num"
+  if [ $num -lt 10 ]; then namaFile="Koleksi_0$num"; fi
+  if [ ! -f $namaFile ]; then break; fi
+  
+  mv $namaFile ./$TANGGAL
 done
-mv Foto.log "$tanggal"

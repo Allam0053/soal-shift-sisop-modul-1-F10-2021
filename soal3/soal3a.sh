@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./clean3a.sh
+
 TOTAL_FOTO=23
 totalSama=0
 
@@ -26,7 +28,7 @@ for ((num=1; num<=$TOTAL_FOTO; num=num+1)); do
   done
 done
 
-echo "Ada $totalSama file yang sama"
+echo -e "\nAda $totalSama file yang sama\n"
 
 # for ((i=1; i<=$TOTAL_FOTO; i=i+1)); do
 
