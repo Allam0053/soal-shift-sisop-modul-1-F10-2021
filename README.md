@@ -187,14 +187,14 @@
       - mengiterasi tiap bari input pada loop while, jika pattern nya sesuai dengan pattern log error, maka jumlah error pada user terkait akan dilakukan penjumlahan. Jika pattern nya tidak sesuai dengan pattern log error, maka log info user terkait akan dilakukan penjumlahan
       - tiap nama serta jumlah error dan info akan diassign ke variable baru sebagai string dan variable tersebut akan diurutkan secara ascending dengan perintah echo.
       - pada loop yang terakhir ini, iterasi dilakukan untuk mencetak hasil pengurutan pada operasi sebelumnya
-    
+
     Kesulitan pada pengerjaan ini adalah minimnya pengetahuan terhadap regex dan perintah yang tersedia seperti grep dan sed. Karena keterbatasan tersebut maka diputuskan untuk menulis code dengan pendekatan pemrograman dasar, sehingga code sangat panjang. Tidak ada sumber yang benar-benar lengkap mengenai regex, sehingga penelusuran terhadap materi harus dilakukan dengan berbagai sumber yang berbeda. Penulisan code pada shell script mempunyai kompleksitas yang cukup tinggi sehingga sering kali menyebabkan error yang sulit diketahui. Karena tergolong ilmu yang sangat baru bagi praktikan, praktikan harus membiasakan diri untuk menulis code yang sesuai pada shell script. Error yang paling sering terjadi adalah ketika proses ekstraksi string, terutama pengambilan log error atau info. berikut adalah error / proses pengambilan string yang gagal karena kesalahan pola pada regex
     ![error1](./img/soal1/error1.png)
     ![codeerror1](./img/soal1/codeerror1.png)
 
     berikut adalah hasil dari file user statistic
     ![user statistic](./img/soal1/hasil1.png)
-    
+
     berikut adalah hasil dari file error message
     ![error message](./img/soal1/hasil2.png)
 
@@ -338,7 +338,9 @@
               if (leastProfit == totalEast) leastRegion = leastRegion " East"
               if (leastProfit == totalWest) leastRegion = leastRegion " West"
               if (leastProfit == totalSouth) leastRegion = leastRegion " South"
+
         Menentukan daerah mana yang profitnya paling kecil.
+
       -       printf("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %.2f\n", leastRegion, leastProfit)
         Menampilkan wilayah & proft dengan profit terkecil sesuai format kalimat pada soal.
 
@@ -389,45 +391,125 @@
     <br>
     <br>
 
-3.  Kuuhaku adalah orang yang sangat suka mengoleksi foto-foto digital, namun Kuuhaku juga merupakan seorang yang pemalas sehingga ia tidak ingin repot-repot mencari foto, selain itu ia juga seorang pemalu, sehingga ia tidak ingin ada orang yang melihat koleksinya tersebut, sayangnya ia memiliki teman bernama Steven yang memiliki rasa kepo yang luar biasa. Kuuhaku pun memiliki ide agar Steven tidak bisa melihat koleksinya, serta untuk mempermudah hidupnya, yaitu dengan meminta bantuan kalian.
+3.  Kuuhaku adalah orang yang sangat suka mengoleksi foto-foto digital, namun Kuuhaku juga merupakan seorang yang pemalas sehingga ia tidak ingin repot-repot mencari foto, selain itu ia juga seorang pemalu, sehingga ia tidak ingin ada orang yang melihat koleksinya tersebut, sayangnya ia memiliki teman bernama Steven yang memiliki rasa kepo yang luar biasa. Kuuhaku pun memiliki ide agar Steven tidak bisa melihat koleksinya, serta untuk mempermudah hidupnya, yaitu dengan meminta bantuan kalian. Idenya adalah :
 
-## Penyelesaian nomor 3
+    - Membuat script untuk mengunduh 23 gambar dari "https://loremflickr.com/320/240/kitten" serta menyimpan log-nya ke file "Foto.log". Karena gambar yang diunduh acak, ada kemungkinan gambar yang sama terunduh lebih dari sekali, oleh karena itu kalian harus menghapus gambar yang sama (tidak perlu mengunduh gambar lagi untuk menggantinya). Kemudian menyimpan gambar-gambar tersebut dengan nama "Koleksi_XX" dengan nomor yang berurutan tanpa ada nomor yang hilang (contoh : Koleksi_01, Koleksi_02, ...)
 
-![image](https://user-images.githubusercontent.com/73766205/112965696-b2aed180-9173-11eb-88ed-32cb403c73ca.png)
-![image](https://user-images.githubusercontent.com/73766205/112966015-01f50200-9174-11eb-8b81-08a37d1c9af1.png)
+    - Karena Kuuhaku malas untuk menjalankan script tersebut secara manual, ia juga meminta kalian untuk menjalankan script tersebut sehari sekali pada jam 8 malam untuk tanggal-tanggal tertentu setiap bulan, yaitu dari tanggal 1 tujuh hari sekali (1,8,...), serta dari tanggal 2 empat hari sekali(2,6,...). Supaya lebih rapi, gambar yang telah diunduh beserta log-nya, dipindahkan ke folder dengan nama tanggal unduhnya dengan format "DD-MM-YYYY" (contoh : "13-03-2023").
 
-- 3a. Membuat script untuk mengunduh 23 gambar kucing dari https://loremflickr.com/320/240/kitten, membuat file log Foto.log untuk mencatat log pengunduhannya, menghapus gambar-gambar yang sama, menyimpan gambar kucing tersebut dengan format nama Koleksi_XX
-  - [Link kode bash nomor 3a](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3a.sh)
-  - Digunakan loop for untuk mengunduh 23 gambar dari website tertera. Jika urutan unduhan filenya kurang dari 10, maka menggunakan command wget –O Koleksi*0$i sedangkan jika lebih dari atau sama dengan 10, maka menggunakan wget –O Koleksi*$i. Nama folder atau file dapat dibentuk dari variabel
-  - Untuk masalah menghapus foto yang memiliki duplikat, belum diketahui cara selain mendownload sebuah service atau mengecek masing-masing pixel satu per satu. Ada ide untuk menggunakan du -h untuk membaca besar memori gambar, tapi masih memfaktorkan adanya perbedaan pada ukuran byte pada dua gambar yang sama
-  - File log memasukkan hasil output dari setiap program yang dijalankan, jadi file log Foto.log menerima semua hasil output dari line pertama sampai terakhir ke dalam Foto.log menggunakan &>> karena jika menggunakan >>, maka tidak ada isinya di dalam Foto.log
-- 3b. Membuat crontab untuk menjalankan script sehari sekali pada jam 8 malam pada tanggal-tanggal tertentu (Seminggu sekali mulai tanggal 1 dan empat hari sekali mulai tanggal 2). Script yang dijalankan memindah semua gambar serta log-nya ke dalam folder dengan nama tanggal unduhannya
-  - [Link kode bash nomor 3b](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3b.sh)
-  - [Link kode crontab nomor 3b](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/cron3b.tab)
-  - Untuk file shell, tidak jauh beda dengan file pada nomor 3a. Perbedaannya adalah letak folder untuk menyimpan unduhannya berupa tanggal dengan format dd-mm-yyyy yang dapat dibuat dengan memasukan string tanggal dengan isi “`date +%d-%m-%Y`” ke dalam direktori folder yang akan dituju (`wget –P ~/”$tanggal”’)
-  - Direktori file dapat disingkat menjadi ~/Folder
-  - Selain itu, Foto.log juga akan dipindah ke folder “$tanggal”
-  - Untuk file crontab, untuk menentukan file (`bash soal3b.sh`) dieksekusi setiap jam 8 malam seminggu sekali mulai dari tanggal 1 dan setiap empat minggu sekali mulai dari tanggal 2 dalam crontab dapat menggunakan format `0 20 _/7,2-31/4 _ \* bash soal3b.sh’
+    - Agar kuuhaku tidak bosan dengan gambar anak kucing, ia juga memintamu untuk mengunduh gambar kelinci dari "https://loremflickr.com/320/240/bunny". Kuuhaku memintamu mengunduh gambar kucing dan kelinci secara bergantian (yang pertama bebas. contoh : tanggal 30 kucing > tanggal 31 kelinci > tanggal 1 kucing > ... ). Untuk membedakan folder yang berisi gambar kucing dan gambar kelinci, nama folder diberi awalan "Kucing*" atau "Kelinci*" (contoh : "Kucing_13-03-2023").
 
-![image](https://user-images.githubusercontent.com/73766205/112969392-66fe2700-9177-11eb-9c56-118ea679d668.png)
+    - Untuk mengamankan koleksi Foto dari Steven, Kuuhaku memintamu untuk membuat script yang akan memindahkan seluruh folder ke zip yang diberi nama “Koleksi.zip” dan mengunci zip tersebut dengan password berupa tanggal saat ini dengan format "MMDDYYYY" (contoh : “03032003”).
 
-- 3c. Membuat script untuk mengunduh gambar kelinci dari https://loremflickr.com/320/240/bunny dan gambar kucing dari situs di nomor 3a secara bergantian dan disimpan pada folder yang berbeda (Kucing_tanggal dan Kelinci_tanggal)
-  - [Link kode bash nomor 3c](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3c.sh)
-  - Untuk dapat membedakan antara hari untuk mengunduh gambar kelinci dan kucing dapat menggunakan waktu UNIX (`date +%s`) yang dibagi oleh 86400 (hasil dari perkalian antara satu menit (60), satu jam (60), dan satu hari (24)). Lalu, hasil pembagian tersebut dicek apakah ganjil atau genap supaya dapat mengunduh gambar kelinci atau kucing secara bergantian menggunakan `if [ $(( $hari % 2)) -eq 0 ]`
-  - Format filenya masih mengikuti cara pada soal sebelumnya : menggunakan variabel. Tapi, jika ada spasi di dalam string tersebut, maka variabel tersebut diketik di dalam sebuah tanda petik
-- 3d. Membuat script untuk membuat zip sebuah folder yang berisi foto-foto tadi dan membuat password untuk zip tersebut berupa tanggal pembuatan zip
-  - [Link kode bash nomor 3d](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3d.sh)
-  - Untuk membuat zip file berpassword, dapat menggunakan `zip –r –P [namapassword] [nama file zip yang akan dibuat] [nama-nama file/folder yang akan dikompres]`. –r akan membaca folder yang akan dimasukan dalam zip sedangkan –P untuk menambahkan password
-  - Nama passwordnya memiliki format variabel sama seperti soal-soal sebelumnya, yaitu menggunakan variabel string dari command `date +%d%m%Y`
-  - Untuk folder yang akan dizip, saya menamakannya Folder_Gambar yang berisi folder-folder foto-foto kucing dan kelinci
-- 3e. Membuat crontab untuk menjalankan script pada 3d setiap hari kerja (Senin sampai Jumat) pada jam 7 pagi. Lalu, diluar waktu tersebut, file zip tadi di-unzip dan file zip tadi dihapus
-  - [Link kode crontab nomor 3e](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/cron3e.tab)
-  - Ada dua perintah crontab : menjalankan soal3d.sh untuk membuat file zip dan membuka file zip lalu menghapusnya
-  - Perintah pertama akan membuat file zip setiap jam 7 pagi pada hari senin sampai jumat (`0 7 * * 1-5`)
-  - Perintah kedua akan mebuka file zip dan mengisinya dengan password yang berupa tanggal. Pada saat yang sama, file Koleksi.zip akan dihapus. Ini terjadi setiap jam 6 sore pada hari senin sampai jumat, dikarenakan pada hari sabtu dan minggu tidak ada kegiatan apa-apa (`0 18 * * 1-5`)
+    - Karena kuuhaku hanya bertemu Steven pada saat kuliah saja, yaitu setiap hari kecuali sabtu dan minggu, dari jam 7 pagi sampai 6 sore, ia memintamu untuk membuat koleksinya ter-zip saat kuliah saja, selain dari waktu yang disebutkan, ia ingin koleksinya ter-unzip dan tidak ada file zip sama sekali.
 
-Kesulitan yang dialami selama pengerjaan soal
-- Untuk soal 3a, belum diketahui caranya membandingkan dua gambar yang sama
-- Untuk menghindari kelebihan memori dan tepat waktu sebelum deadline, saya mengetik kodingannya langsung di github. Tapi, sebagian dari commandnya diketik di shell sebelum diketik di github, sehingga sisanya hanya perulangan atau modifikasi
-- Belum tahu cara menuliskan di dalam log sehingga yang ditampilkan hanyalah status unduhannya saja dan tidak termasuk line-line yang lainnya. Atau bahkan karakteristiknya log itu sendiri
-- Kelihatannya, jika Ubuntu berjalan, maka tidak bisa menggunakan semacam mikrofon atau speaker dari semacam Google Meet atau Discord
+    > Catatan:
+    >
+    > - Gunakan bash, AWK, dan command pendukung
+    > - Tuliskan semua cron yang kalian pakai ke file cron3[b/e].tab yang sesuai
+
+  <br>
+
+- # Penyelesaian nomor 3
+
+  - `Nomor 3a` Script dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3b.sh)
+
+    Ide dasar pengerjaan soal ini pertama-tama men-download foto-foto tersebut dengan looping. Untuk setiap foto baru yang ter-download akan disimpan **log** nya serta dicek apakah foto baru tersebut sudah ada/belum. Jika sudah maka foto baru itu akan langsung dihapus dan jika belum maka foto baru akan tetap disimpan. Lalu proses looping akan terus berlanjut sampai 23 kali. Berikut adalah detail kode:
+
+    -     # Proses download file
+
+          nomorFile=$(($num - $totalSama))
+          fileBaruTerdownload="Koleksi_$nomorFile"
+          if [ $nomorFile -lt 10 ]; then        fileBaruTerdownload="Koleksi_0$nomorFile"; fi
+          curl -Lo ./$fileBaruTerdownload -k https://loremflickr.com/       320/240/kitten 2>> Foto.log
+
+      Kode diatas untuk men-download foto dari internet
+
+    -     # Iterasi: cek setiap file yg sudah ada apakah ada yang sama dengan yg baru di-download
+
+          for ((i=1; i<$nomorFile; i=i+1)); do
+            iterasiFile="Koleksi_$i"
+            if [ $i -lt 10 ]; then iterasiFile="Koleksi_0$i"; fi
+
+            # Jika ada, hapus file, lalu kembali men-download file baru
+            adaPersamaan=$(diff $iterasiFile $fileBaruTerdownload)
+            if [ -z "$adaPersamaan" ]; then
+              totalSama=$(($totalSama + 1))
+              rm $fileBaruTerdownload
+              break
+            fi
+          done
+
+      Kode diatas untuk pengecekan apakah foto ada yang sama atau tidak. Cara mengeceknya dengan command `diff`
+
+    - Kode-kode diatas akan di-looping sebanyak 23x
+
+    <br>
+
+    > Hasil dari 3a:
+    >
+    > **DISCLAIMER !!**
+    >
+    > Screenshot dibawah ini memiliki ekstensi "**.jpg**" hanya agar gambar bisa langsung terlihat. Pada source code aslinya, gambar akan disimpan **tanpa** ekstensi ".jpg"
+
+    ![Hasil nomor 3a](./img/soal3/hasil-3a.png)
+    ![Hasil log nomor 3a](./img/soal3/hasil-log-3a.png)
+
+    <br>
+
+  - `Nomor 3b` Script dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3b.sh)
+
+    Soal ini sebenarnya adalah pengembangan dari `nomor 3a` yaitu memindahkan foto-foto beserta log kedalam folder yang namanya adalah tanggal foto-foto di-download. Jadi untuk mengimplementasikannya :
+
+    - Pertama-tama jalankan script dari `nomor 3a`
+
+    - Kemudian buat string yang membentuk format tanggal "DD-MM-YYYY". Caranya dengan kode "`date +%d-%m-%Y`"
+
+    - Buat folder-nya menggunakan String yang dibentuk diatas dengan command `mkdir`
+
+    - Pindahkan file `Foto.log` ke folder dengan command `mv`
+
+    - Kemudian terakhir, pindahkan semua foto-foto yang ada ke folder dengan cara mengiterasinya
+
+    Lalu soal juga meminta untuk membuat crontab nya. Source crontab nya dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/cron3b.tab)
+
+    <br>
+
+    > Hasil dari 3b:
+
+    ![Hasil nomor 3b](./img/soal3/hasil-3b.png)
+
+    Perhatikan bahwa file log dan koleksi foto berada di dalam folder bernama "**03-04-2021**".
+    Disini foto-fotonya tidak terlihat karena tidak memakai ekstensi ".jpg"
+
+    <br>
+
+  - `Nomor 3c` Script dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3c.sh)
+
+    Soal `3c` ini lagi-lagi mirip dengan `3a` yaitu mendownload suatu file. Jadi untuk proses download-nya sudah dijelaskan di `nomor 3a`. Namun bedanya kita diminta men-download foto kucing dan kelinci secara bergantian (selang-seling) berdasarkan hari, kemudian menyimpan foto-fotonya ke folder dengan format yang sudah dijelaskan di soal. Untuk itu hanya diperlukan tambahan logika pengecekan hari lalu mendownload foto hewan yang sesuai.
+
+    -     tanggal=`date +%s` #penanggalan sejak 1 Januari 1970
+          danggal=`date +%d-%m-%Y`
+          let hari=$tanggal/86400
+
+      Pertama kita ingin mengekstrak hari saat ini. Untuk itu dapat dijalankan kode diatas. Kemudian hasilnya disimpan ke variabel `hari`.
+
+    -     if [ $(( $hari % 2)) -eq 0 ]; then
+            downloadFoto https://loremflickr.com/320/240/kitten "Kucing_$danggal"
+          else
+            downloadFoto https://loremflickr.com/320/240/bunny "Kelinci_$danggal"
+          fi
+
+      Jika `hari % 2 == 0` maka download foto kucing.
+      Jika tidak maka download foto kelinci. Cara men-download nya menggunakan user-defined fucntion `downloadFoto` yang menerima argumen **URL** dan **string nama folder**. Pada dasarnya fungsi `downloadFoto` akan mendownload foto lalu menghapus foto jika terdapat kesamaan (sama seperti `nomor 3a`).
+
+    <br>
+
+    > Hasil dari 3c:
+
+    ![Hasil nomor 3c](./img/soal3/hasil-3c.png)
+
+    Disini menunjukan hasil download yaitu **Kucing**.
+    Dan tentu saja untuk hari selanjutnya, script akan men-download **Kelinci** karena logika yang sudah diatur pada `if [ $(( $hari % 2)) -eq 0 ]`.
+
+    <br>
