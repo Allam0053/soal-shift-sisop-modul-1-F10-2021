@@ -1,1 +1,2 @@
-0 20 */7,2-31/4 * * bash soal3b.sh
+# Pada jam 20.00, setiap 7 hari sekali dan juga setiap 4 hari sekali dimulai tanggal 2
+0 20 */7,2-31/4 * * (cd /Users/riza/Documents/A-Kuliah/6-Sistem-Operasi/Praktikum/soal-shift-sisop-modul-1-F10-2021/soal3; bash soal3b.sh)

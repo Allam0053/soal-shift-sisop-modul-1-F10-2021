@@ -1,16 +1,13 @@
 #!/bin/bash
 
-rm -r ./Kelinci*
-rm -r ./Kucing*
-
 downloadFoto() {
   TOTAL_FOTO=23
-  totalSama=0
   URL=$1
   FOLDER=$2
+  totalSama=0
 
-  rmdir ./$FOLDER
-  mkdir ./$FOLDER
+  # Jika folder belum ada, buat folder-nya
+  if [ ! -d "$FOLDER" ]; then mkdir ./$FOLDER; fi;
   
   for ((num=1; num<=$TOTAL_FOTO; num=num+1)); do
 
@@ -36,7 +33,7 @@ downloadFoto() {
   done
 }
 
-tanggal=`date +%s` #penanggalans sejak 1 Januari 1970
+tanggal=`date +%s` #penanggalan sejak 1 Januari 1970
 danggal=`date +%d-%m-%Y`
 let hari=$tanggal/86400
 

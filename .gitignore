@@ -99,6 +99,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,visualstudiocode,git
+
+
+# SELF-CUSTOM GIT IGNORE
 syslog.log
 error_message.csv
 user_statistic.csv
@@ -106,29 +109,8 @@ soal.sh
 coba.sh
 coba-riza.sh
 clean3a.sh
-Koleksi_01
-Koleksi_02
-Koleksi_03
-Koleksi_04
-Koleksi_05
-Koleksi_06
-Koleksi_07
-Koleksi_08
-Koleksi_09
-Koleksi_10
-Koleksi_11
-Koleksi_12
-Koleksi_13
-Koleksi_14
-Koleksi_15
-Koleksi_16
-Koleksi_17
-Koleksi_18
-Koleksi_19
-Koleksi_20
-Koleksi_21
-Koleksi_22
-Koleksi_23
+Koleksi_*
 Foto.log
 Koleksi.zip
 soal3/*/
+*.tsv
