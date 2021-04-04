@@ -1,8 +1,10 @@
 #!/bin/bash
 #3d
+if [[ -z "$1" ]]; then
 password=$(date "+%m%d%Y")
 zip -P $password -r Koleksi.zip */
 rm -R -- */
+fi
 
 # 3e
 if [[ $1 == "zip" ]]; 
