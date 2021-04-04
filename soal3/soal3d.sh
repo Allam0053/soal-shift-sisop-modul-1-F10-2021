@@ -4,7 +4,7 @@ password=$(date "+%m%d%Y")
 zip -P $password -r Koleksi.zip */
 rm -R -- */
 
-#3e
+# 3e
 if [[ $1 == "zip" ]]; 
 then
     password=$(date "+%m%d%Y")

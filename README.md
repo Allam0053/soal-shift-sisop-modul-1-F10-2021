@@ -522,6 +522,19 @@
           zip -P $password -r Koleksi.zip */
           rm -R -- */
     ```
-    
+    ![Sebelum nomor 3d](./img/soal3/3d.sebelumzip.png)
+    ![Sesudah nomor 3d](./img/soal3/3d.sesudahzip.png)
 
     <br>
+
+    - `Nomor 3e` Script dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/cron3e.tab)
+
+    Pada soal ini praktikan harus memberi jadwal untuk operasi zip seperti pada 3d dan unzip file tersebut pada waktu tertentu. Untuk melakukan zip dan unzip, digunakan shell script yang tersedia pada jawaban soal 3d. Ditambahkan jadwal sesuai ketentuan yang telah disebutkan lalu ditambahkan direcotry dan command untuk menjalankan shell script 3d. Lalu ditambahkan argument "zip" untuk melakukan operasi zip. Ditambahkan argument "unzip" untuk operasi unzip file.
+    ```tab
+          #zip
+          0 7 * * 1-5 (cd /home/allam/Documents/GitHub/soal-shift-sisop-modul-1-F10-2021/soal3/; bash soal3d.sh zip)
+          #unzip and delete
+          0 18 * * 1-5 (cd /home/allam/Documents/GitHub/soal-shift-sisop-modul-1-F10-2021/soal3/; bash soal3d.sh unzip)
+    ```
+    ![Cron nomor 3e](./img/soal3/3e.png)
+    ![Sesudah zip nomor 3e](./img/soal3/3d.sesudahzip.png)
