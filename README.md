@@ -513,3 +513,15 @@
     Dan tentu saja untuk hari selanjutnya, script akan men-download **Kelinci** karena logika yang sudah diatur pada `if [ $(( $hari % 2)) -eq 0 ]`.
 
     <br>
+
+    - `Nomor 3d` Script dapat dilihat [disini](https://github.com/Allam0053/soal-shift-sisop-modul-1-F10-2021/blob/main/soal3/soal3d.sh)
+
+    Pada soal ini praktikan harus men-zip folder beserta file kucing dan kelinci yang telah diunduh. Untuk itu command zip adalah command yang cocok untuk task tersebut. Untuk memberi password pada file zip yang akan dibuat, dapat ditambahkan option -P lalu diikuti dengan passwordnya. Password disetting tanggal pada saat pembuatan zip dilakukan. setelah itu dapat ditambahkan option -r untuk menginklusi semua file pada folder yang akan disebutkan. Setelah itu diikuti dengan nama file/zip yang akan dibuat. Lalu ditambahkan directory file yang akan dizip. Setelah melakukan zip, file lama akan dihapus dengan command rm dan diikuti dengan -r untuk menghapus folder yang memiliki file di dalamnya secara rekursif lalu diberi spesifikasi nama file atau directory yang akan dihapus dengan --. Karena yang akan dihapus adalah seluruh folder yang telah dibuat maka dapat dituliskan */ dengan maksud hapus semua folder yang ada pada directory tersebut. berikut adalah command yang dapat dijalankan untuk men-zip folder beserta file nya
+    ```shell
+          password=$(date "+%m%d%Y")
+          zip -P $password -r Koleksi.zip */
+          rm -R -- */
+    ```
+    
+
+    <br>
